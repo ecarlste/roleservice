@@ -31,7 +31,11 @@ public class RoleService {
     }
 
     public Role update(long id, Role role) {
-        return roleRepository.save(role);
+        if (roleRepository.exists(id)) {
+            return roleRepository.save(role);
+        } else {
+            return null;
+        }
     }
 
     public void delete(long id) {
